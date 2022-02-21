@@ -29,27 +29,16 @@ Developed by: Anitha P
 Register Number: 21500186
 
 import pandas as pd
-from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
-import seaborn as sns
-x1 = pd.read_csv('clustering.csv')
-print(x1.head(2))
-x2 = x1.loc[:,['ApplicantIncome','LoanAmount']]
-print(x2.head(2))
-
-x = x2.values
-sns.scatterplot(x[:,0],x[:,1])
-plt.xlabel('Income')
-plt.ylabel('Loan')
-plt.show()
-
-kmeans=KMeans(n_clusters=4)
-kmeans.fit(x)
-print("Cluster centers:",kmeans.cluster_centers_)
-print("Labels:",kmeans.labels_)
-predict_class = kmeans.predict([[9000,1200]])
-print("Cluster group for application income 9000 and loan amount 1200 is",predict_class)
-
+from sklearn import linear_model
+df = pd.read_csv("cars.csv")
+x = df[['Weight','Volume']]
+y = df['CO2']
+regr = linear_model.LinearRegression()
+regr.fit(x,y)
+print("Coefficient:",regr.coef_)
+print("Intercept:",regr.intercept_)
+predictedCO2=regr.predict([[3300,1300]])
+print("Predicted CO2 for the corresponding weight and volume is",predictedCO2)
 
 ```
 ## Output:
